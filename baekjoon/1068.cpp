@@ -7,7 +7,7 @@ using namespace std;
 
 #include <string.h>
 
-#define DEBUG
+//#define DEBUG
 #ifdef DEBUG
 #define D printf
 #else
@@ -87,8 +87,13 @@ int main() {
     result = 0;
     if ( data[K][0] != -1 ){
 
-        data[K][0] = -2;
         data[data[K][0]][1] = data[data[K][0]][1] - 1;
+        data[K][0] = -2;
+
+        for(i=0;i<N;i++){
+            D("(%d, %d) ", data[i][0], data[i][1]);
+        }
+        D("\n");
 
         result = 0;
         for(i=0;i<N;i++){
