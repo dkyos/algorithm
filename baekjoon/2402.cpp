@@ -10,11 +10,11 @@
 
 using namespace std;
 
-vector<long long> seg;
-int seg_size;
-
 typedef long long ll;
 int N, M, K;
+
+#define S_MAX 1 << 21
+ll seg[S_MAX];
 
 //#define DEBUG
 
@@ -23,15 +23,6 @@ int N, M, K;
 #else
 #define D
 #endif
-
-void print_seg()
-{
-    int i;
-
-    for(i=1; i<seg_size; i++){
-        D("seg[%d] = %lld \n", i,  seg[i]);
-    }
-}
 
 ll update(int pos, int val, int node, int x, int y) 
 {
@@ -73,18 +64,12 @@ int main()
 
     scanf("%d %d %d", &N, &M, &K);
     D("N:%d, M:%d, K:%d \n", N, M, K);
-
-    seg_size = pow(2, log2(N)+1) + 1;
-    seg.resize(seg_size+1);
+    D("S_MAX:%d \n", S_MAX);
 
     for (i=0; i<N; i++) {
         scanf("%d", &d);
         update(i, d, 1, 0, N-1);
     }
-
-#ifdef DEBUG
-    print_seg();
-#endif
 
     int a, b, c;
     for (i=0; i<M+K; i++) {
